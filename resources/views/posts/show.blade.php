@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('hello')
+@section('content')
     <div class="text-center">
         <div class="card">
             <div class="card-header">
