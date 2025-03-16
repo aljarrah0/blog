@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('hello')
+@section('content')
     <div class="text-center">
         <button type="button" class="btn btn-success">Create Post</button>
         <table class="table mt-4">
