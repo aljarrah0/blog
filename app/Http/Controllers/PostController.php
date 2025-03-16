@@ -15,4 +15,11 @@ class PostController extends Controller
         ];
         return view('posts.index', ['posts' => $posts]);
     }
+
+    function show($postId)
+    {
+        $singlePost = ['id' => 1, 'title' => 'HTML', 'posted_by' => 'Mohammed', 'created_at' => '2025-01-011'];
+
+        return view('posts.show', ['post' => $singlePost]);
+    }
 }
