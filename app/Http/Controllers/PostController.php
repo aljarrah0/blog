@@ -46,4 +46,27 @@ class PostController extends Controller
         // rediraction to posts index
         return to_route('posts.index');
     }
+
+
+
+    function edit()
+    {
+        $pageTitle = 'create post';
+
+        return view('posts.edit', ['title' => $pageTitle]);
+    }
+
+    function update()
+    {
+        // get the data
+        // $data = $_POST;
+         $data = request()->all();
+//            dd($data);
+        // validation the data
+
+        // store data in database
+
+        // rediraction to post show
+        return to_route('posts.show', 1);
+    }
 }
