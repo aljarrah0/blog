@@ -24,4 +24,26 @@ class PostController extends Controller
 
         return view('posts.show', ['post' => $singlePost, 'title' => $pageTitle]);
     }
+
+    function create()
+    {
+        $pageTitle = 'create post';
+
+        return view('posts.create', ['title' => $pageTitle]);
+    }
+
+    function store()
+    {
+        // get the data
+        // $data = $_POST;
+        // $data = request()->all();
+        $data =
+        dd($data);
+        // validation the data
+
+        // store data in database
+
+        // rediraction to posts index
+        return to_route('posts.index');
+    }
 }
