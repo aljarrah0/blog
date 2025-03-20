@@ -36,9 +36,7 @@ class PostController extends Controller
     {
         // get the data
         // $data = $_POST;
-        // $data = request()->all();
-        $data =
-        dd($data);
+         $data = request()->all();
         // validation the data
 
         // store data in database
@@ -68,5 +66,13 @@ class PostController extends Controller
 
         // rediraction to post show
         return to_route('posts.show', 1);
+    }
+
+    function destroy()
+    {
+        // Remove the post from the database
+
+        // Redirect to the posts index
+        return to_route('posts.index');
     }
 }
