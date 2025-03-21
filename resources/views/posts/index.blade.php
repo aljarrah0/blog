@@ -16,13 +16,13 @@
             @foreach($posts as $post)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $post['title'] }}</td>
-                    <td>{{ $post['posted_by'] }}</td>
-                    <td>{{ $post['created_at'] }}</td>
+                    <td>{{ $post->title }}</td>
+                    <td>{{ $post->posted_by }}</td>
+                    <td>{{ $post->created_at }}</td>
                     <td>
-                        <a href="{{ route('posts.show', $post['id']) }}" class="btn btn-info">View</a>
-                        <a href="{{ route('posts.edit', 1) }}" class="btn btn-primary">Edit</a>
-                        <form style="display:inline" method="POST" action="{{ route('posts.destroy', $post['id']) }}">
+                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info">View</a>
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
+                        <form style="display:inline" method="POST" action="{{ route('posts.destroy', $post->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>

@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Post;
+
 class PostController extends Controller
 {
     function index()
     {
         $pageTitle = 'index';
-        $posts = [
-            ['id' => 1, 'title' => 'HTML', 'posted_by' => 'Mohammed', 'created_at' => '2025-01-011'],
-            ['id' => 1, 'title' => 'CSS', 'posted_by' => 'Ahmed', 'created_at' => '2025-01-10'],
-            ['id' => 1, 'title' => 'JS', 'posted_by' => 'Amjad', 'created_at' => '2025-01-09'],
-            ['id' => 1, 'title' => 'PHP', 'posted_by' => 'Yasin', 'created_at' => '2025-01-01'],
-        ];
+        $posts = Post::all();
+
         return view('posts.index', ['posts' => $posts, 'title' => $pageTitle]);
     }
 
