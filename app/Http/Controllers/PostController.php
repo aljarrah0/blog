@@ -15,12 +15,17 @@ class PostController extends Controller
         return view('posts.index', ['posts' => $posts, 'title' => $pageTitle]);
     }
 
-    function show($postId)
+    function show(Post $post)
     {
         $pageTitle = 'show';
-        $singlePost = ['id' => 1, 'title' => 'HTML', 'posted_by' => 'Mohammed', 'created_at' => '2025-01-011'];
 
-        return view('posts.show', ['post' => $singlePost, 'title' => $pageTitle]);
+//        $post= Post::find($postId);
+//        $post= Post::findOrFail($postId);
+//        if(is_null($post)){
+//            abort(404);
+//        }
+
+        return view('posts.show', ['post' => $post, 'title' => $pageTitle]);
     }
 
     function create()
@@ -34,7 +39,7 @@ class PostController extends Controller
     {
         // get the data
         // $data = $_POST;
-         $data = request()->all();
+        $data = request()->all();
         // validation the data
 
         // store data in database
@@ -42,7 +47,6 @@ class PostController extends Controller
         // rediraction to posts index
         return to_route('posts.index');
     }
-
 
 
     function edit()
@@ -56,7 +60,7 @@ class PostController extends Controller
     {
         // get the data
         // $data = $_POST;
-         $data = request()->all();
+        $data = request()->all();
 //            dd($data);
         // validation the data
 
