@@ -92,10 +92,10 @@ class PostController extends Controller
         return to_route('posts.show', $post);
     }
 
-    function destroy()
+    function destroy(Post $post)
     {
         // Remove the post from the database
-
+        $post->delete();
         // Redirect to the posts index
         return to_route('posts.index');
     }
