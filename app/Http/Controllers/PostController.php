@@ -60,25 +60,36 @@ class PostController extends Controller
     }
 
 
-    function edit()
+    function edit(Post $post)
     {
         $pageTitle = 'create post';
+        $users = User::all();
 
-        return view('posts.edit', ['title' => $pageTitle]);
+        return view('posts.edit', ['title' => $pageTitle, 'users' => $users, 'post' => $post]);
     }
 
-    function update()
+    function update(Post $post)
     {
         // get the data
         // $data = $_POST;
         $data = request()->all();
-//            dd($data);
+
         // validation the data
 
-        // store data in database
+        // update data in database
+        // case 1
+//        $post->title = request()->title;
+//        $post->description = request()->description;
+//        $post->save();
 
-        // rediraction to post show
-        return to_route('posts.show', 1);
+        // case 2
+        $post->update([
+            'title' => request()->title,
+            'description' => request()->description
+        ]);
+
+        // redirection to post show
+        return to_route('posts.show', $post);
     }
 
     function destroy()
