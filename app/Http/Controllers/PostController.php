@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -31,20 +32,30 @@ class PostController extends Controller
     function create()
     {
         $pageTitle = 'create post';
-
-        return view('posts.create', ['title' => $pageTitle]);
+        $users = User::all();
+        return view('posts.create', ['title' => $pageTitle, 'users' => $users]);
     }
 
     function store()
     {
         // get the data
         // $data = $_POST;
-        $data = request()->all();
+
         // validation the data
 
         // store data in database
+        // case 1
+//        $post = new Post();
+//        $post->title = request()->title;
+//        $post->description = request()->description;
+//        $post->save();
+        // case 2
+        Post::create([
+            'title' => request()->title,
+            'description' => request()->description
+        ]);
 
-        // rediraction to posts index
+        // redirection to posts index
         return to_route('posts.index');
     }
 
