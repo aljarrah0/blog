@@ -1,42 +1,38 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Post\Http\Controllers;
 
-
-use App\Models\Post;
+use App\Http\Controllers\Controller;
 use App\Models\User;
+use Modules\Post\Models\Post;
 
 class PostController extends Controller
 {
-    function index()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
         $pageTitle = 'index';
         $posts = Post::all();
 
-        return view('posts.index', ['posts' => $posts, 'title' => $pageTitle]);
+        return view('post::index', ['posts' => $posts, 'title' => $pageTitle]);
     }
 
-    function show(Post $post)
-    {
-        $pageTitle = 'show';
-
-//        $post= Post::find($postId);
-//        $post= Post::findOrFail($postId);
-//        if(is_null($post)){
-//            abort(404);
-//        }
-
-        return view('posts.show', ['post' => $post, 'title' => $pageTitle]);
-    }
-
-    function create()
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
         $pageTitle = 'create post';
         $users = User::all();
-        return view('posts.create', ['title' => $pageTitle, 'users' => $users]);
+        return view('post::create', ['title' => $pageTitle, 'users' => $users]);
     }
 
-    function store()
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store()
     {
         // get the data
         // $data = $_POST;
@@ -60,16 +56,37 @@ class PostController extends Controller
         return to_route('posts.index');
     }
 
+    /**
+     * Show the specified resource.
+     */
+    public function show(Post $post)
+    {
+        $pageTitle = 'show';
 
-    function edit(Post $post)
+//        $post= Post::find($postId);
+//        $post= Post::findOrFail($postId);
+//        if(is_null($post)){
+//            abort(404);
+//        }
+
+        return view('post::show', ['post' => $post, 'title' => $pageTitle]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Post $post)
     {
         $pageTitle = 'create post';
         $users = User::all();
 
-        return view('posts.edit', ['title' => $pageTitle, 'users' => $users, 'post' => $post]);
+        return view('post::edit', ['title' => $pageTitle, 'users' => $users, 'post' => $post]);
     }
 
-    function update(Post $post)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Post $post)
     {
         // get the data
         // $data = $_POST;
@@ -93,6 +110,9 @@ class PostController extends Controller
         return to_route('posts.show', $post);
     }
 
+    /**
+     * Remove the specified resource from storage.
+     */
     function destroy(Post $post)
     {
         // Remove the post from the database

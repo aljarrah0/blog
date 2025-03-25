@@ -1,10 +1,10 @@
 <?php
 
-namespace $NAMESPACE$;
+namespace Modules\Post\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class $NAME$ extends Seeder
+class PostDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.

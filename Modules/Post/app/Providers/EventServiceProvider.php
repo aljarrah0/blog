@@ -1,10 +1,10 @@
 <?php
 
-namespace $NAMESPACE$;
+namespace Modules\Post\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
-class $CLASS$ extends ServiceProvider
+class EventServiceProvider extends ServiceProvider
 {
     /**
      * The event handler mappings for the application.
