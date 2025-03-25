@@ -12,7 +12,7 @@
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Posted By</label>
-            <select class="form-select" name="posted_by" aria-label="Default select example">
+            <select class="form-select" name="user_id" aria-label="Default select example">
                 <option selected>Open this select menu</option>
                 @foreach($users as $user)
                     <option value="{{ $user->id }}">{{ $user->name }}</option>

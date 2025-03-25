@@ -52,7 +52,8 @@ class PostController extends Controller
         // case 2
         Post::create([
             'title' => request()->title,
-            'description' => request()->description
+            'description' => request()->description,
+            'user_id' => request()->user_id
         ]);
 
         // redirection to posts index
