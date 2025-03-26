@@ -18,7 +18,7 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->posted_by }}</td>
-                    <td>{{ $post->created_at }}</td>
+                    <td>{{ $post->created_at->format('Y-m-d') }}</td>
                     <td>
                         <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info">View</a>
                         <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
