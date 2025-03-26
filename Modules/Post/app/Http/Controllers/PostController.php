@@ -38,6 +38,11 @@ class PostController extends Controller
         // $data = $_POST;
 
         // validation the data
+        request()->validate([
+            'title' => ['required', 'string', 'min:4', 'max:255'],
+            'description' => ['required', 'string', 'min:4', 'max:255'],
+            'user_id' => ['required', 'integer', 'exists:users,id']
+        ]);
 
         // store data in database
         // case 1
