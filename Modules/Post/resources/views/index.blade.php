@@ -17,7 +17,7 @@
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $post->title }}</td>
-                    <td>{{ $post->posted_by }}</td>
+                    <td>{{ $post->user->name }}</td>
                     <td>{{ $post->created_at->format('Y-m-d') }}</td>
                     <td>
                         <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info">View</a>
