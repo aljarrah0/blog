@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('post::layouts.master')
 @section('content')
     <div class="text-center">
         <a href="{{ route('posts.create') }}" class="btn btn-success">Create Post</a>
