@@ -3,7 +3,7 @@
 namespace Modules\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -12,7 +12,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user::index');
+        $pageTitle = 'index';
+        $users = User::all()->sortDesc();
+
+        return view('user::index', ['users' => $users, 'title' => $pageTitle]);
     }
 
     /**
@@ -20,37 +23,109 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user::create');
+        $pageTitle = 'create user';
+        return view('user::create', ['title' => $pageTitle]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {}
+    public function store()
+    {
+        // get the data
+        // $data = $_user;
+
+        // validation the data
+        request()->validate([
+            'name' => ['required', 'string', 'min:4', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email', 'min:4', 'max:255'],
+            'password' => ['required', 'string', 'min:4', 'max:255'],
+        ]);
+
+        // store data in database
+        // case 1
+//        $user = new user();
+//        $user->title = request()->title;
+//        $user->description = request()->description;
+//        $user->save();
+        // case 2
+        user::create([
+            'name' => request()->name,
+            'email' => request()->email,
+            'password' => request()->password
+        ]);
+
+        // redirection to users index
+        return to_route('users.index');
+    }
 
     /**
      * Show the specified resource.
      */
-    public function show($id)
+    public function show(user $user)
     {
-        return view('user::show');
+        $pageTitle = 'show';
+
+//        $user= user::find($userId);
+//        $user= user::findOrFail($userId);
+//        if(is_null($user)){
+//            abort(404);
+//        }
+
+        return view('user::show', ['user' => $user, 'title' => $pageTitle]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(user $user)
     {
-        return view('user::edit');
+        $pageTitle = 'create user';
+        $users = User::all();
+
+        return view('user::edit', ['title' => $pageTitle, 'users' => $users, 'user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id) {}
+    public function update(user $user)
+    {
+        // get the data
+        // $data = $_user;
+        $data = request()->all();
+
+        // validation the data
+        request()->validate([
+            'name' => ['required', 'string', 'min:4', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email', 'min:4', 'max:255'],
+            'password' => ['required', 'string', 'min:4', 'max:255'],
+        ]);
+        // update data in database
+        // case 1
+//        $user->title = request()->title;
+//        $user->description = request()->description;
+//        $user->save();
+
+        // case 2
+        $user->update([
+            'name' => request()->name,
+            'email' => request()->email,
+            'password' => request()->password
+        ]);
+
+        // redirection to user show
+        return to_route('users.show', $user);
+    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id) {}
+    function destroy(user $user)
+    {
+        // Remove the user from the database
+        $user->delete();
+        // Redirect to the users index
+        return to_route('users.index');
+    }
 }
