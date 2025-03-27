@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "884bee50483a6ee10ebdc127fb258af4",
+    "content-hash": "a2d8ad3ac2d57cd05ce082d74bb2bba2",
     "packages": [
         {
             "name": "brick/math",
@@ -2596,6 +2596,43 @@
                 }
             ],
             "time": "2025-03-08T02:07:02+00:00"
+        },
+        {
+            "name": "nwidart/user",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./Modules/User",
+                "reference": "db51801487686f66b9a1fecbee406bd0a1850ff6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\User\\": "app/",
+                    "Modules\\User\\Database\\Factories\\": "database/factories/",
+                    "Modules\\User\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Modules\\User\\Tests\\": "tests/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Nicolas Widart",
+                    "email": "n.widart@gmail.com"
+                }
+            ],
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "phpoption/phpoption",
@@ -8210,7 +8247,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "nwidart/user": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
