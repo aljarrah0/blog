@@ -58,7 +58,7 @@ class PostController extends Controller
         ]);
 
         // redirection to posts index
-        return to_route('posts.index');
+        return to_route('posts.index')->withSuccess('Post created successfully');
     }
 
     /**
@@ -117,7 +117,7 @@ class PostController extends Controller
         ]);
 
         // redirection to post show
-        return to_route('posts.show', $post);
+        return to_route('posts.show', $post)->with('success', 'Post updated successfully');
     }
 
     /**
