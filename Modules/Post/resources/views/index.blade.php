@@ -1,5 +1,10 @@
 @extends('post::layouts.master')
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="text-center">
         <a href="{{ route('posts.create') }}" class="btn btn-success">Create Post</a>
         <table class="table mt-4">
