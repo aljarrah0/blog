@@ -4,7 +4,6 @@ namespace Modules\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Log;
 
 class UserController extends Controller
 {
@@ -25,6 +24,7 @@ class UserController extends Controller
     public function create()
     {
         $pageTitle = 'create user';
+
         return view('user::create', ['title' => $pageTitle]);
     }
 
@@ -45,15 +45,15 @@ class UserController extends Controller
 
         // store data in database
         // case 1
-//        $user = new user();
-//        $user->title = request()->title;
-//        $user->description = request()->description;
-//        $user->save();
+        //        $user = new user();
+        //        $user->title = request()->title;
+        //        $user->description = request()->description;
+        //        $user->save();
         // case 2
         user::create([
             'name' => request()->name,
             'email' => request()->email,
-            'password' => request()->password
+            'password' => request()->password,
         ]);
 
         // redirection to users index
@@ -67,11 +67,11 @@ class UserController extends Controller
     {
         $pageTitle = 'show';
 
-//        $user= user::find($userId);
-//        $user= user::findOrFail($userId);
-//        if(is_null($user)){
-//            abort(404);
-//        }
+        //        $user= user::find($userId);
+        //        $user= user::findOrFail($userId);
+        //        if(is_null($user)){
+        //            abort(404);
+        //        }
 
         return view('user::show', ['user' => $user, 'title' => $pageTitle]);
     }
@@ -104,15 +104,15 @@ class UserController extends Controller
         ]);
         // update data in database
         // case 1
-//        $user->title = request()->title;
-//        $user->description = request()->description;
-//        $user->save();
+        //        $user->title = request()->title;
+        //        $user->description = request()->description;
+        //        $user->save();
 
         // case 2
         $user->update([
             'name' => request()->name,
             'email' => request()->email,
-            'password' => request()->password
+            'password' => request()->password,
         ]);
 
         // redirection to user show
@@ -122,10 +122,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    function destroy(user $user)
+    public function destroy(user $user)
     {
         // Remove the user from the database
         $user->delete();
+
         // Redirect to the users index
         return to_route('users.index')->withSuccess('User deleted successfully');
     }
