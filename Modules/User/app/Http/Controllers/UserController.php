@@ -98,7 +98,7 @@ class UserController extends Controller
         // validation the data
         request()->validate([
             'name' => ['required', 'string', 'min:4', 'max:255'],
-            'email' => ['required', 'email', 'unique:users,email', 'min:4', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email,'.$user->id, 'min:4', 'max:255'],
             'password' => ['required', 'string', 'min:4', 'max:255'],
         ]);
         // update data in database
