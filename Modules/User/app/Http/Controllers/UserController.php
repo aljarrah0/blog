@@ -4,6 +4,7 @@ namespace Modules\User\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Log;
 
 class UserController extends Controller
 {
@@ -124,7 +125,13 @@ class UserController extends Controller
     function destroy(user $user)
     {
         // Remove the user from the database
-        $user->delete();
+        try {
+            $user->delete();
+        } catch (\Exception  $e) {
+            Log::error('User not deleted: ' . $e->getMessage());
+            return to_route('users.index')->withError('User not deleted');
+        }
+//        $user->delete();
         // Redirect to the users index
         return to_route('users.index')->withSuccess('User deleted successfully');
     }
