@@ -5,6 +5,11 @@
             {{ session('success') }}
         </div>
     @endif
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="text-center">
         <a href="{{ route('users.create') }}" class="btn btn-success">Create user</a>
         <table class="table mt-4">
@@ -25,7 +30,7 @@
                     <td>
                         <a href="{{ route('users.show', $user->id) }}" class="btn btn-info">View</a>
                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
-                        <form style="display:inline" method="user" action="{{ route('users.destroy', $user->id) }}">
+                        <form style="display:inline" method="POST" action="{{ route('users.destroy', $user->id) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
