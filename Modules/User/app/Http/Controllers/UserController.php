@@ -56,7 +56,7 @@ class UserController extends Controller
         ]);
 
         // redirection to users index
-        return to_route('users.index');
+        return to_route('users.index')->withSuccess('User created successfully');
     }
 
     /**
@@ -115,7 +115,7 @@ class UserController extends Controller
         ]);
 
         // redirection to user show
-        return to_route('users.show', $user);
+        return to_route('users.show', $user)->withSuccess('User updated successfully');
     }
 
     /**
@@ -126,6 +126,6 @@ class UserController extends Controller
         // Remove the user from the database
         $user->delete();
         // Redirect to the users index
-        return to_route('users.index');
+        return to_route('users.index')->withSuccess('User deleted successfully');
     }
 }
