@@ -1,4 +1,4 @@
-@extends('user::layouts.master')
+@extends('layouts.app')
 @section('content')
     <div class="text-center">
         <a href="{{ route('users.create') }}" class="btn btn-success">Create user</a>

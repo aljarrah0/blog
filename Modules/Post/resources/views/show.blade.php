@@ -1,4 +1,4 @@
-@extends('post::layouts.master')
+@extends('layouts.app')
 @section('content')
     @if(session('success'))
         <div class="alert alert-success text-center">

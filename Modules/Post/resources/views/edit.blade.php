@@ -1,4 +1,4 @@
-@extends('post::layouts.master')
+@extends('layouts.app')
 @section('content')
     @php
         $isSubmitted = old('_token') !== null;
