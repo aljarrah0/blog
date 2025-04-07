@@ -12,6 +12,11 @@
             </ul>
         </div>
     @endif
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <form method="POST" action="{{ route('users.store') }}">
         @csrf
         <div class="mb-3">
