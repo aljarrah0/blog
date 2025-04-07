@@ -8,7 +8,7 @@
                 </div>
                 user Details
                 <div class="float-end">
-                    <form style="display:inline" method="user" action="{{ route('users.destroy', $user->id) }}">
+                    <form style="display:inline" method="POST" action="{{ route('users.destroy', $user->id) }}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -17,9 +17,8 @@
                 </div>
             </div>
             <div class="card-body">
-                <h5 class="card-title">{{ $user->title }}</h5>
-                <p class="card-text">{{ $user->description }}</p>
-                <p class="card-text">{{ $user->user->name }}</p>
+                <h5 class="card-title">{{ $user->name }}</h5>
+                <p class="card-text">{{ $user->email }}</p>
             </div>
         </div>
     </div>
