@@ -40,6 +40,6 @@
                    required minlength="3" value="{{ old('password') }}"
             >
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">create</button>
     </form>
 @endsection
