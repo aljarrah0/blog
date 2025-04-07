@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    @php
+        $isSubmitted = old('_token') !== null;
+    @endphp
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -13,22 +16,31 @@
         @csrf
         @method('PUT')
         <div class="mb-3">
-            <label for="title" class="form-label">title</label>
-            <input type="text" name="title" class="form-control" id="title" placeholder="title input placeholder" required value="{{ old('title', $user->title) }}">
+            <label for="name" class="form-label">name</label>
+            <input type="text" name="name" class="form-control
+            @if($isSubmitted) @error('name') is-invalid @else is-valid @enderror @endif" id="name"
+                   placeholder="name input placeholder"
+                   required minlength="3" value="{{ old('name', $user->name) }}"
+            >
         </div>
         <div class="mb-3">
-            <label for="description" class="form-label">description</label>
-            <textarea class="form-control" name="description" placeholder="description input placeholder" required>{{ old('description', $user->description) }}</textarea>
+            <label for="email" class="form-label">email</label>
+            <input type="email" name="email"
+                   class="form-control @if($isSubmitted) @error('email') is-invalid @else is-valid @enderror @endif"
+                   id="email"
+                   placeholder="email input placeholder"
+                   required minlength="3" value="{{ old('email', $user->email) }}"
+            >
         </div>
         <div class="mb-3">
-            <label for="description" class="form-label">usered By</label>
-            <select class="form-select" name="user_id" aria-label="Default select example" required>
-                <option value="" selected>Open this select menu</option>
-                @foreach($users as $user)
-                    <option @selected(old('user_id', $user->user_id) == $user->id) value="{{ $user->id }}">{{ $user->name }}</option>
-                @endforeach
-            </select>
+            <label for="password" class="form-label">password</label>
+            <input type="password" name="password"
+                   class="form-control @if($isSubmitted) @error('password') is-invalid @else is-valid @enderror @endif"
+                   id="password"
+                   placeholder="password input placeholder"
+                   required minlength="3" value="{{ old('password', $user->password) }}"
+            >
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 @endsection
