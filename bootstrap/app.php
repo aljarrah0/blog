@@ -14,5 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->render(function (Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->withError("حدث خطأ ما");
+        });
     })->create();
