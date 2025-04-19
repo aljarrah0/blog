@@ -50,7 +50,7 @@ class UserController extends Controller
         //        $user->description = request()->description;
         //        $user->save();
         // case 2
-        user::create([
+        User::create([
             'name' => request()->name,
             'email' => request()->email,
             'password' => request()->password,
