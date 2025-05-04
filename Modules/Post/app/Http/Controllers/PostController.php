@@ -51,7 +51,9 @@ class PostController extends Controller
 //        $post->description = request()->description;
 //        $post->save();
         // case 2
+        $pathImage = request()->file('image')->store('images/posts', 'public');
         Post::create([
+            'image' => $pathImage,
             'title' => request()->title,
             'description' => request()->description,
             'user_id' => request()->user_id
