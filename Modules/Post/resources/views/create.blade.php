@@ -12,8 +12,24 @@
             </ul>
         </div>
     @endif
-    <form method="POST" action="{{ route('posts.store') }}">
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+    <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
         @csrf
+        <div class="mb-3">
+            <label for="Image" class="form-label">Image</label>
+            <input type="file" name="image"
+                   class="form-control
+                    @if($isSubmitted)
+                        @error('image') is-invalid @else is-valid @enderror
+                    @endif"
+                   id="Image"
+                   placeholder="Image input placeholder"
+                   required minlength="3" value="{{ old('image') }}">
+        </div>
         <div class="mb-3">
             <label for="title" class="form-label">title</label>
             <input type="text" name="title"
